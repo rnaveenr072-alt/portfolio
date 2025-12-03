@@ -1,0 +1,1163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aanand Kolri - Premium 3D Portfolio</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Load Lucide Icons for professional icons -->
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
+    <style>
+        /* Custom styles for the dark theme and smooth scrolling */
+        :root {
+            --primary-bg: #1A1837; /* Deep Purple/Navy */
+            --secondary-bg: #2C284D; /* Lighter Purple */
+            --accent-color: #A855F7; /* Violet/Purple accent */
+            --text-color: #E5E7EB; /* Light Gray */
+            --highlight-text: #FBBF24; /* Amber/Yellow for highlights */
+            /* ADDED: Profile animation colors */
+            --profile-bg-1: #A855F7;     /* Main accent purple */
+            --profile-bg-2: #C084FC;     /* Lighter purple */
+            --profile-bg-3: #9333EA;     /* Darker purple */
+            --profile-bg-4: #D8B4FE;     /* Light purple */
+            
+            /* ADDED: Technology Specific Colors */
+            --react-color: #61DAFB;      /* React Blue */
+            --nextjs-color: #000000;     /* Next.js Black */
+            --nodejs-color: #339933;     /* Node.js Green */
+            --mongodb-color: #47A248;    /* MongoDB Green */
+            --html5-color: #E34F26;      /* HTML5 Orange */
+            --css3-color: #1572B6;       /* CSS3 Blue */
+            --js-color: #F7DF1E;         /* JavaScript Yellow */
+            --seo-color: #A855F7;        /* SEO Purple (Your accent) */
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--secondary-bg);
+            color: var(--text-color);
+            scroll-behavior: smooth;
+            perspective: 1000px;
+            overflow-x: hidden;
+        }
+        /* Style for the active navigation item */
+        .active-link {
+            border-bottom: 2px solid var(--accent-color);
+            color: var(--accent-color);
+        }
+        /* Custom card background with subtle gradient */
+        .custom-card {
+            background: var(--secondary-bg);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
+            border: 1px solid #3F3C64;
+        }
+        
+        /* ENHANCED: Floating animation with 3D rotation */
+        @keyframes enhancedFloat {
+            0% { 
+                transform: translatey(0px) rotateX(0deg) rotateY(0deg); 
+                box-shadow: 0 5px 15px rgba(168, 85, 247, 0.4);
+            }
+            25% { 
+                transform: translatey(-15px) rotateX(5deg) rotateY(5deg); 
+                box-shadow: 0 15px 30px rgba(168, 85, 247, 0.6);
+            }
+            50% { 
+                transform: translatey(5px) rotateX(-3deg) rotateY(-3deg); 
+                box-shadow: 0 25px 45px rgba(211, 180, 254, 0.7);
+            }
+            75% { 
+                transform: translatey(-10px) rotateX(3deg) rotateY(-2deg); 
+                box-shadow: 0 20px 35px rgba(147, 51, 234, 0.6);
+            }
+            100% { 
+                transform: translatey(0px) rotateX(0deg) rotateY(0deg); 
+                box-shadow: 0 5px 15px rgba(168, 85, 247, 0.4);
+            }
+        }
+        
+        /* ADDED: Profile ring color changing animation */
+        @keyframes ringColorChange {
+            0% { 
+                border-color: var(--profile-bg-1);
+                box-shadow: 0 0 20px var(--profile-bg-1);
+            }
+            25% { 
+                border-color: var(--profile-bg-2);
+                box-shadow: 0 0 20px var(--profile-bg-2);
+            }
+            50% { 
+                border-color: var(--profile-bg-3);
+                box-shadow: 0 0 20px var(--profile-bg-3);
+            }
+            75% { 
+                border-color: var(--profile-bg-4);
+                box-shadow: 0 0 20px var(--profile-bg-4);
+            }
+            100% { 
+                border-color: var(--profile-bg-1);
+                box-shadow: 0 0 20px var(--profile-bg-1);
+            }
+        }
+        
+        /* ADDED: Pulsing size animation */
+        @keyframes pulseSize {
+            0%, 100% { 
+                transform: scale(1);
+            }
+            50% { 
+                transform: scale(1.02);
+            }
+        }
+        
+        /* ADDED: Rotating ring effect */
+        @keyframes rotateRing {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+        
+        /* ADDED: Gradient flow animation */
+        @keyframes gradientFlow {
+            0%, 100% { 
+                background-position: 0% 50%;
+            }
+            50% { 
+                background-position: 100% 50%;
+            }
+        }
+        
+        /* ADDED: Enhanced pulsing glow animation */
+        @keyframes enhancedPulseGlow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(168, 85, 247, 0.5),
+                            0 0 40px rgba(168, 85, 247, 0.3),
+                            0 0 60px rgba(168, 85, 247, 0.1);
+            }
+            50% { 
+                box-shadow: 0 0 30px rgba(147, 51, 234, 0.7),
+                            0 0 60px rgba(147, 51, 234, 0.5),
+                            0 0 90px rgba(147, 51, 234, 0.3);
+            }
+        }
+        
+        /* ADDED: Sparkle animation */
+        @keyframes sparkle {
+            0%, 100% {
+                opacity: 0;
+                transform: scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: scale(1) rotate(180deg);
+            }
+        }
+        
+        /* ENHANCED: Profile ring with multiple animations */
+        .profile-ring {
+            animation: 
+                enhancedFloat 6s ease-in-out infinite,
+                ringColorChange 8s infinite,
+                pulseSize 4s ease-in-out infinite,
+                rotateRing 25s linear infinite;
+            border: 3px solid transparent;
+            background: linear-gradient(135deg, 
+                var(--profile-bg-1), 
+                var(--profile-bg-2), 
+                var(--profile-bg-3), 
+                var(--profile-bg-4)) border-box;
+            background-size: 200% 200%;
+            animation: gradientFlow 3s ease infinite;
+            transform-style: preserve-3d;
+        }
+        
+        /* Profile ring hover effect */
+        .profile-ring:hover {
+            animation-duration: 3s, 4s, 2s, 15s !important;
+            filter: brightness(1.2);
+        }
+        
+        /* ADDED: Enhanced pulsing glow class */
+        .pulse-glow {
+            animation: enhancedPulseGlow 3s infinite;
+        }
+        
+        /* ADDED: Profile trail effect */
+        .profile-trail {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+            filter: blur(12px);
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0;
+        }
+        
+        @keyframes trailFloat {
+            0%, 100% { 
+                opacity: 0;
+                transform: translate(-50%, -50%) scale(0);
+            }
+            10%, 90% { 
+                opacity: 0.4;
+            }
+            50% { 
+                opacity: 0.7;
+                transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1);
+            }
+        }
+        
+        /* ADDED: Sparkle dots */
+        .sparkle-dot {
+            position: absolute;
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        /* ADDED: Technology icon colors */
+        .tech-react {
+            color: var(--react-color);
+            border-color: var(--react-color);
+        }
+        .tech-nextjs {
+            color: var(--nextjs-color);
+            border-color: var(--nextjs-color);
+        }
+        .tech-nodejs {
+            color: var(--nodejs-color);
+            border-color: var(--nodejs-color);
+        }
+        .tech-mongodb {
+            color: var(--mongodb-color);
+            border-color: var(--mongodb-color);
+        }
+        .tech-html5 {
+    color: #E34F26 !important;      /* HTML5 Orange - brighter */
+    border-color: #E34F26 !important;
+    filter: drop-shadow(0 0 3px #E34F26);
+}
+
+.tech-css3 {
+    color: #1572B6 !important;      /* CSS3 Blue - brighter */
+    border-color: #1572B6 !important;
+    filter: drop-shadow(0 0 3px #1572B6);
+}
+
+        .tech-js {
+            color: var(--js-color);
+            border-color: var(--js-color);
+        }
+        .tech-seo {
+            color: var(--seo-color);
+            border-color: var(--seo-color);
+        }
+        
+        /* ADDED: Hover glow effects for tech cards */
+        .tech-card:hover .tech-icon {
+            filter: drop-shadow(0 0 8px currentColor);
+            transform: scale(1.1);
+        }
+        
+        .tech-card {
+            transition: all 0.3s ease;
+        }
+        
+        .tech-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Scroll indicator for mobile (Optional but nice) */
+        .scroll-indicator {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #A855F7, #FBBF24);
+            z-index: 1000;
+        }
+        
+        /* PREMIUM 3D ANIMATIONS */
+        .premium-3d {
+            transform-style: preserve-3d;
+            transition: transform 1.2s cubic-bezier(0.23, 1, 0.32, 1), 
+                        opacity 1.2s cubic-bezier(0.23, 1, 0.32, 1),
+                        filter 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+            opacity: 0;
+            filter: blur(5px);
+        }
+        
+        /* Different animation directions with premium effects */
+        .premium-left {
+            transform: translateX(-150px) rotateY(25deg) scale(0.85);
+        }
+        
+        .premium-right {
+            transform: translateX(150px) rotateY(-25deg) scale(0.85);
+        }
+        
+        .premium-top {
+            transform: translateY(-150px) rotateX(25deg) scale(0.85);
+        }
+        
+        .premium-bottom {
+            transform: translateY(150px) rotateX(-25deg) scale(0.85);
+        }
+        
+        .premium-behind {
+            transform: translateZ(-300px) scale(0.7);
+        }
+        
+        .premium-zoom {
+            transform: scale(0.7) rotateY(15deg);
+        }
+        
+        /* Active state when element is in view */
+        .premium-3d.active {
+            opacity: 1;
+            transform: translateX(0) translateY(0) translateZ(0) rotateX(0) rotateY(0) scale(1);
+            filter: blur(0);
+        }
+        
+        /* Premium hover effects */
+        .premium-hover {
+            transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), 
+                        box-shadow 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .premium-hover:hover {
+            transform: translateY(-15px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Premium background effects */
+        .premium-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .premium-particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--accent-color) 0%, transparent 70%);
+            filter: blur(40px);
+            animation: particle-float 15s infinite linear;
+        }
+        
+        @keyframes particle-float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-20px) rotate(90deg); }
+            50% { transform: translateY(0) rotate(180deg); }
+            75% { transform: translateY(20px) rotate(270deg); }
+        }
+        
+        /* Premium text glow effect */
+        .premium-glow {
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.5),
+                         0 0 20px rgba(168, 85, 247, 0.3),
+                         0 0 30px rgba(168, 85, 247, 0.1);
+        }
+        
+        /* Premium button effects */
+        .premium-button {
+            position: relative;
+            overflow: hidden;
+            transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .premium-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+        
+        .premium-button:hover::before {
+            left: 100%;
+        }
+        
+        /* Premium section dividers */
+        .premium-divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+            margin: 4rem 0;
+        }
+        
+        /* Premium scroll progress indicator */
+        .premium-scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, #A855F7, #FBBF24, #A855F7);
+            z-index: 1000;
+            box-shadow: 0 0 10px rgba(168, 85, 247, 0.5);
+        }
+        
+        /* Premium floating elements */
+        .premium-float {
+            animation: premium-float 6s ease-in-out infinite;
+        }
+        
+        @keyframes premium-float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            33% { transform: translateY(-15px) rotate(3deg); }
+            66% { transform: translateY(10px) rotate(-3deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        
+        /* ADDED: Profile image hover effect */
+        .profile-image-container:hover .profile-ring {
+            animation-duration: 3s, 4s, 2s, 15s;
+        }
+        
+        .profile-image-container:hover ~ .profile-trail {
+            animation-duration: 1s !important;
+            opacity: 0.8;
+        }
+        
+        /* ADDED: Sparkle animation for profile */
+        @keyframes sparkleFloat {
+            0%, 100% {
+                opacity: 0;
+                transform: translate(var(--sparkle-x), var(--sparkle-y)) scale(0) rotate(0deg);
+            }
+            50% {
+                opacity: 1;
+                transform: translate(var(--sparkle-x), var(--sparkle-y)) scale(1) rotate(180deg);
+            }
+        }
+        
+        /* ADDED: Reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .profile-ring,
+            .profile-trail,
+            .sparkle-dot,
+            .premium-3d,
+            .premium-float,
+            .pulse-glow,
+            .premium-particle {
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+<body class="selection:bg-violet-700 selection:text-white">
+
+    <!-- Premium Scroll Progress -->
+    <div class="premium-scroll-progress" id="premiumScrollProgress"></div>
+
+    <!-- Premium Background -->
+    <div class="premium-bg" id="premiumBg"></div>
+
+    <!-- Header & Navigation -->
+    <header class="sticky top-0 z-50 bg-primary-bg/95 backdrop-blur-sm shadow-xl p-4 md:px-12">
+        <nav class="flex justify-between items-center max-w-7xl mx-auto">
+            <div class="text-2xl font-extrabold text-white premium-glow">Folio<span class="text-accent-color">KD</span></div>
+            <div class="hidden md:flex space-x-8 text-base font-medium">
+                <a href="#home" class="nav-link py-1 hover:text-accent-color transition duration-300">Home</a>
+                <a href="#about" class="nav-link py-1 hover:text-accent-color transition duration-300">About</a>
+                <a href="#skills" class="nav-link py-1 hover:text-accent-color transition duration-300">Skills</a>
+                <a href="#portfolio" class="nav-link py-1 hover:text-accent-color transition duration-300">Portfolio</a>
+                <a href="#contact" class="nav-link py-1 hover:text-accent-color transition duration-300">Contact</a>
+            </div>
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuButton" class="md:hidden text-white">
+                <i data-lucide="menu" class="w-6 h-6"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu Overlay -->
+        <div id="mobileMenu" class="fixed inset-0 bg-primary-bg z-50 flex flex-col items-center justify-center space-y-8 transform -translate-x-full transition-transform duration-300 md:hidden">
+            <button id="closeMenuButton" class="absolute top-6 right-6 text-white">
+                <i data-lucide="x" class="w-8 h-8"></i>
+            </button>
+            <a href="#home" class="mobile-nav-link text-3xl text-white hover:text-accent-color transition duration-300" data-section="home">Home</a>
+            <a href="#about" class="mobile-nav-link text-3xl text-white hover:text-accent-color transition duration-300" data-section="about">About</a>
+            <a href="#skills" class="mobile-nav-link text-3xl text-white hover:text-accent-color transition duration-300" data-section="skills">Skills</a>
+            <a href="#portfolio" class="mobile-nav-link text-3xl text-white hover:text-accent-color transition duration-300" data-section="portfolio">Portfolio</a>
+            <a href="#contact" class="mobile-nav-link text-3xl text-white hover:text-accent-color transition duration-300" data-section="contact">Contact</a>
+        </div>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <!-- 1. Home Section -->
+        <section id="home" class="pt-24 pb-16 min-h-screen flex items-center">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <!-- Text Content -->
+                <div class="space-y-8 text-center md:text-left premium-3d premium-left">
+                    <p class="text-xl text-highlight-text font-semibold premium-float">Hello It's Me</p>
+                    <h1 class="text-5xl sm:text-7xl font-extrabold leading-tight text-white">
+                        Happy Dude <span class="text-accent-color block sm:inline premium-glow">Web Developer & SEO Expert!</span>
+                    </h1>
+                    <p class="text-xl text-gray-400 max-w-xl mx-auto md:mx-0">
+                        I build stunning websites that rank higher and perform better. Let's create something powerful together.
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6 pt-4 justify-center md:justify-start">
+                        <a href="#contact" class="bg-accent-color hover:bg-violet-700 text-white font-bold py-4 px-8 rounded-full transition duration-300 transform hover:scale-105 shadow-lg shadow-violet-800/50 text-center premium-button text-lg">
+                            Let's Book a Call
+                        </a>
+                        <div class="flex space-x-6 items-center justify-center md:justify-start">
+                            <a href="#" class="p-4 bg-secondary-bg hover:bg-accent-color/50 rounded-full transition duration-300 shadow-md premium-hover">
+                                <i data-lucide="linkedin" class="w-6 h-6 text-gray-300"></i>
+                            </a>
+                            <a href="#" class="p-4 bg-secondary-bg hover:bg-accent-color/50 rounded-full transition duration-300 shadow-md premium-hover">
+                                <i data-lucide="instagram" class="w-6 h-6 text-gray-300"></i>
+                            </a>
+                            <a href="#" class="p-4 bg-secondary-bg hover:bg-accent-color/50 rounded-full transition duration-300 shadow-md premium-hover">
+                                <i data-lucide="github" class="w-6 h-6 text-gray-300"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Profile Image Placeholder with Enhanced Animation -->
+                <div class="flex justify-center md:justify-end premium-3d premium-right profile-image-container">
+                    <div class="relative w-96 h-96" id="profile-container">
+                        <!-- Outer glowing ring with enhanced animations -->
+                        <div class="profile-ring pulse-glow absolute inset-0 rounded-full"></div>
+                        <!-- Particle trails will be added here by JavaScript -->
+                        <!-- Sparkle dots will be added here by JavaScript -->
+                        <!-- Inner image circle placeholder -->
+                        <img src="https://placehold.co/400x400/2C284D/FBBF24?text=Profile+Pic" 
+                             alt="Professional Profile" 
+                             class="rounded-full w-full h-full object-cover p-2 transform transition-all duration-500 hover:scale-[1.02] cursor-pointer premium-hover z-10 relative"
+                             onerror="this.onerror=null;this.src='https://placehold.co/400x400/2C284D/FBBF24?text=Profile+Pic'"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Premium Divider -->
+        <div class="premium-divider"></div>
+
+        <!-- 2. About Section -->
+        <section id="about" class="py-24">
+            <div class="text-center mb-20 premium-3d premium-top">
+                <h2 class="text-5xl font-bold text-white mb-4">About Me</h2>
+                <p class="text-xl text-accent-color">A brief look into my professional journey.</p>
+            </div>
+
+            <div class="custom-card p-10 md:p-16 rounded-3xl shadow-2xl premium-3d premium-behind premium-hover">
+                <p class="text-xl text-gray-300 mb-10 leading-relaxed">
+                    I am a highly motivated and experienced Web Developer specializing in creating stunning, responsive, and high-performance websites that excel in both design & functionality. My philosophy is simple: <span class="text-highlight-text font-semibold">Build Fast, Look Good, and Be Optimized.</span> I am passionate about turning complex ideas into beautiful, intuitive, and powerful online tools that empower businesses to achieve 2X their revenue.
+                </p>
+
+                <div class="flex flex-col sm:flex-row space-y-6 sm:space-y-0 sm:space-x-8 justify-center">
+                    <button class="bg-highlight-text hover:bg-amber-500 text-primary-bg font-bold py-4 px-8 rounded-full transition duration-300 transform hover:scale-105 text-center premium-button text-lg">
+                        <i data-lucide="download" class="w-6 h-6 inline mr-3"></i> Download CV
+                    </button>
+                    <a href="#portfolio" class="border-2 border-accent-color text-accent-color hover:bg-accent-color hover:text-white font-bold py-4 px-8 rounded-full transition duration-300 transform hover:scale-105 text-center premium-button text-lg">
+                        View Projects
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Premium Divider -->
+        <div class="premium-divider"></div>
+
+        <!-- 3. Skills/Approach Section (Combined) -->
+        <section id="skills" class="py-24">
+            <div class="text-center mb-20 premium-3d premium-top">
+                <h2 class="text-5xl font-bold text-white mb-4">My Approach & Skills</h2>
+                <p class="text-xl text-accent-color">The tools and methods I use to deliver value.</p>
+            </div>
+            
+            <div class="grid lg:grid-cols-2 gap-16">
+                
+                <!-- Left Column: Key Skills/Technologies -->
+                <div class="space-y-10 premium-3d premium-left">
+                    <h3 class="text-3xl font-semibold text-white mb-6">Core Technology Stack</h3>
+                    <div class="grid grid-cols-3 sm:grid-cols-4 gap-6">
+                        <!-- Skill Icons/Cards with technology-specific colors -->
+                        <div class="tech-card flex flex-col items-center p-6 custom-card rounded-xl hover:bg-react-color/10 transition duration-300 premium-hover">
+                            <div class="tech-icon w-10 h-10 flex items-center justify-center mb-3 transition-all duration-300">
+                                <i data-lucide="code" class="w-10 h-10 tech-react"></i>
+                            </div>
+                            <span class="text-base font-medium text-gray-300">React.js</span>
+                        </div>
+                        
+                        <div class="tech-card flex flex-col items-center p-6 custom-card rounded-xl hover:bg-nextjs-color/10 transition duration-300 premium-hover">
+                            <div class="tech-icon w-10 h-10 flex items-center justify-center mb-3 transition-all duration-300">
+                                <i data-lucide="layers" class="w-10 h-10 tech-nextjs"></i>
+                            </div>
+                            <span class="text-base font-medium text-gray-300">Next.js</span>
+                        </div>
+                        
+                        <div class="tech-card flex flex-col items-center p-6 custom-card rounded-xl hover:bg-nodejs-color/10 transition duration-300 premium-hover">
+                            <div class="tech-icon w-10 h-10 flex items-center justify-center mb-3 transition-all duration-300">
+                                <i data-lucide="database" class="w-10 h-10 tech-nodejs"></i>
+                            </div>
+                            <span class="text-base font-medium text-gray-300">Node.js</span>
+                        </div>
+                        
+                        <div class="tech-card flex flex-col items-center p-6 custom-card rounded-xl hover:bg-mongodb-color/10 transition duration-300 premium-hover">
+                            <div class="tech-icon w-10 h-10 flex items-center justify-center mb-3 transition-all duration-300">
+                                <i data-lucide="git-branch" class="w-10 h-10 tech-mongodb"></i>
+                            </div>
+                            <span class="text-base font-medium text-gray-300">MongoDB</span>
+                        </div>
+                        
+                        <!-- More Skills -->
+                        <div class="tech-card flex flex-col items-center p-6 custom-card rounded-xl hover:bg-html5-color/10 transition duration-300 premium-hover">
+                            <div class="tech-icon w-10 h-10 flex items-center justify-center mb-3 transition-all duration-300">
+                                <i data-lucide="html5" class="w-10 h-10 tech-html5"></i>
+                            </div>
+                            <span class="text-base font-medium text-gray-300">HTML5</span>
+                        </div>
+                        
+                        <div class="tech-card flex flex-col items-center p-6 custom-card rounded-xl hover:bg-css3-color/10 transition duration-300 premium-hover">
+                            <div class="tech-icon w-10 h-10 flex items-center justify-center mb-3 transition-all duration-300">
+                                <i data-lucide="css3" class="w-10 h-10 tech-css3"></i>
+                            </div>
+                            <span class="text-base font-medium text-gray-300">CSS3</span>
+                        </div>
+                        
+                        <div class="tech-card flex flex-col items-center p-6 custom-card rounded-xl hover:bg-js-color/10 transition duration-300 premium-hover">
+                            <div class="tech-icon w-10 h-10 flex items-center justify-center mb-3 transition-all duration-300">
+                                <i data-lucide="loader" class="w-10 h-10 tech-js"></i>
+                            </div>
+                            <span class="text-base font-medium text-gray-300">JavaScript</span>
+                        </div>
+                        
+                        <div class="tech-card flex flex-col items-center p-6 custom-card rounded-xl hover:bg-seo-color/10 transition duration-300 premium-hover">
+                            <div class="tech-icon w-10 h-10 flex items-center justify-center mb-3 transition-all duration-300">
+                                <i data-lucide="search" class="w-10 h-10 tech-seo"></i>
+                            </div>
+                            <span class="text-base font-medium text-gray-300">SEO/SEM</span>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 p-8 custom-card rounded-xl premium-hover">
+                        <h4 class="text-2xl font-bold text-accent-color mb-4">Empowering Clients</h4>
+                        <p class="text-white text-4xl font-extrabold">2X their revenue</p>
+                        <p class="text-gray-400 mt-3 text-base">Through proven, high-converting design strategies.</p>
+                        <button class="mt-6 text-highlight-text border-2 border-highlight-text px-6 py-3 rounded-full text-base hover:bg-highlight-text/10 transition duration-300 premium-button">
+                            Book a Call
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Column: Development Process/Vision -->
+                <div class="space-y-8 premium-3d premium-right">
+                    <h3 class="text-3xl font-semibold text-white mb-6">The Development Process</h3>
+                    
+                    <!-- Process Step 1 -->
+                    <div class="flex items-start space-x-6 premium-3d premium-bottom">
+                        <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-accent-color rounded-full text-white font-bold text-lg">1</div>
+                        <div>
+                            <p class="font-semibold text-xl text-highlight-text">Understanding Your Vision</p>
+                            <p class="text-base text-gray-400 mt-2">I take the time to deeply understand your goals, brand, and audience to create a tailored design strategy.</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Process Step 2 -->
+                    <div class="flex items-start space-x-6 premium-3d premium-bottom">
+                        <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-accent-color rounded-full text-white font-bold text-lg">2</div>
+                        <div>
+                            <p class="font-semibold text-xl text-highlight-text">Wireframing & Design</p>
+                            <p class="text-base text-gray-400 mt-2">Sketching the structure and building beautiful, user-friendly interfaces that maximize conversion rates.</p>
+                        </div>
+                    </div>
+
+                    <!-- Process Step 3 -->
+                    <div class="flex items-start space-x-6 premium-3d premium-bottom">
+                        <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-accent-color rounded-full text-white font-bold text-lg">3</div>
+                        <div>
+                            <p class="font-semibold text-xl text-highlight-text">Clean Code Development</p>
+                            <p class="text-base text-gray-400 mt-2">Writing efficient, well-documented code using modern frameworks (React, Node.js) for speed and scalability.</p>
+                        </div>
+                    </div>
+
+                    <!-- Process Step 4 -->
+                    <div class="flex items-start space-x-6 premium-3d premium-bottom">
+                        <div class="flex-shrink-0 w-12 h-12 flex items-center justify-center bg-accent-color rounded-full text-white font-bold text-lg">4</div>
+                        <div>
+                            <p class="font-semibold text-xl text-highlight-text">Launch & SEO Optimization</p>
+                            <p class="text-base text-gray-400 mt-2">Final checks, deployment, and crucial search engine optimization to ensure your new site is discoverable and ranks high.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Premium Divider -->
+        <div class="premium-divider"></div>
+
+        <!-- 4. Portfolio Section -->
+        <section id="portfolio" class="py-24">
+            <div class="text-center mb-20 premium-3d premium-top">
+                <h2 class="text-5xl font-bold text-white mb-4">Portfolio Showcase</h2>
+                <p class="text-xl text-accent-color">Explore My Journey: Projects, Certificates, and Expertise.</p>
+            </div>
+
+            <!-- Tab Navigation for Portfolio -->
+            <div class="flex justify-center mb-12 space-x-6">
+                <button class="portfolio-tab custom-card bg-secondary-bg text-gray-300 font-medium py-3 px-8 rounded-full hover:bg-accent-color/50 transition duration-300 active-tab premium-hover premium-3d premium-left text-lg" data-tab="projects">
+                    <i data-lucide="folder-open" class="w-5 h-5 inline mr-2"></i> Projects
+                </button>
+                <button class="portfolio-tab custom-card bg-secondary-bg text-gray-300 font-medium py-3 px-8 rounded-full hover:bg-accent-color/50 transition duration-300 premium-hover premium-3d premium-bottom text-lg" data-tab="certificate">
+                    <i data-lucide="award" class="w-5 h-5 inline mr-2"></i> Certificates
+                </button>
+                <button class="portfolio-tab custom-card bg-secondary-bg text-gray-300 font-medium py-3 px-8 rounded-full hover:bg-accent-color/50 transition duration-300 premium-hover premium-3d premium-right text-lg" data-tab="skill">
+                    <i data-lucide="zap" class="w-5 h-5 inline mr-2"></i> My Skill
+                </button>
+            </div>
+
+            <!-- Tab Content -->
+            <div id="projects-content" class="portfolio-content grid md:grid-cols-2 gap-10">
+                <!-- Project Card 1 -->
+                <div class="custom-card rounded-2xl overflow-hidden transform hover:scale-[1.02] transition duration-300 premium-hover premium-3d premium-left">
+                    <img src="https://placehold.co/600x400/1A1837/A855F7?text=Arithmetica+Solver" alt="Arithmetica Solver Project" class="w-full h-56 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-white mb-3">Arithmetica Solver</h3>
+                        <p class="text-gray-400 text-base mb-6">A powerful, interactive tool built with React and custom algorithms to quickly solve complex arithmetic problems.</p>
+                        <div class="flex space-x-6">
+                            <a href="#" class="text-accent-color hover:text-highlight-text font-semibold flex items-center text-base">
+                                <i data-lucide="eye" class="w-5 h-5 mr-2"></i> View Project
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-white flex items-center text-base">
+                                <i data-lucide="github" class="w-5 h-5 mr-2"></i> Code (Private)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2 -->
+                <div class="custom-card rounded-2xl overflow-hidden transform hover:scale-[1.02] transition duration-300 premium-hover premium-3d premium-right">
+                    <img src="https://placehold.co/600x400/1A1837/A855F7?text=AI+Bot+for+Discord" alt="AI Chat Bot Project" class="w-full h-56 object-cover">
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-white mb-3">AI Bot For Your Community</h3>
+                        <p class="text-gray-400 text-base mb-6">A robust, scalable Discord bot developed with Node.js and the Gemini API for natural language conversations.</p>
+                        <div class="flex space-x-6">
+                            <a href="#" class="text-accent-color hover:text-highlight-text font-semibold flex items-center text-base">
+                                <i data-lucide="eye" class="w-5 h-5 mr-2"></i> View Live
+                            </a>
+                            <a href="#" class="text-gray-500 hover:text-white flex items-center text-base">
+                                <i data-lucide="github" class="w-5 h-5 mr-2"></i> Code (Public)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certificates Content (Initially Hidden) -->
+            <div id="certificate-content" class="portfolio-content grid md:grid-cols-3 gap-10 hidden">
+                <div class="custom-card p-8 rounded-2xl text-center premium-hover premium-3d premium-left">
+                    <i data-lucide="award" class="w-12 h-12 text-highlight-text mx-auto mb-4"></i>
+                    <h4 class="text-xl font-bold text-white">Advanced React Hooks</h4>
+                    <p class="text-base text-gray-400">Coursera - Completed 2024</p>
+                </div>
+                <div class="custom-card p-8 rounded-2xl text-center premium-hover premium-3d premium-bottom">
+                    <i data-lucide="award" class="w-12 h-12 text-highlight-text mx-auto mb-4"></i>
+                    <h4 class="text-xl font-bold text-white">Full-Stack Node.js Master</h4>
+                    <p class="text-base text-gray-400">Udemy - Completed 2023</p>
+                </div>
+                <div class="custom-card p-8 rounded-2xl text-center premium-hover premium-3d premium-right">
+                    <i data-lucide="award" class="w-12 h-12 text-highlight-text mx-auto mb-4"></i>
+                    <h4 class="text-xl font-bold text-white">SEO & SEM Strategy</h4>
+                    <p class="text-base text-gray-400">Google Digital Garage - 2023</p>
+                </div>
+            </div>
+
+            <!-- My Skill Content (Initially Hidden) -->
+            <div id="skill-content" class="portfolio-content hidden">
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Skill Card 1 -->
+                    <div class="custom-card p-8 rounded-2xl premium-hover premium-3d premium-left">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="font-semibold text-white text-lg">JavaScript/TypeScript</h4>
+                            <span class="text-highlight-text text-lg">95%</span>
+                        </div>
+                        <div class="w-full bg-gray-600 rounded-full h-3">
+                            <div class="bg-accent-color h-3 rounded-full" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <!-- Skill Card 2 -->
+                    <div class="custom-card p-8 rounded-2xl premium-hover premium-3d premium-bottom">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="font-semibold text-white text-lg">React & Frontend</h4>
+                            <span class="text-highlight-text text-lg">90%</span>
+                        </div>
+                        <div class="w-full bg-gray-600 rounded-full h-3">
+                            <div class="bg-accent-color h-3 rounded-full" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <!-- Skill Card 3 -->
+                    <div class="custom-card p-8 rounded-2xl premium-hover premium-3d premium-right">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="font-semibold text-white text-lg">Backend (Node/Express)</h4>
+                            <span class="text-highlight-text text-lg">80%</span>
+                        </div>
+                        <div class="w-full bg-gray-600 rounded-full h-3">
+                            <div class="bg-accent-color h-3 rounded-full" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <!-- Skill Card 4 -->
+                    <div class="custom-card p-8 rounded-2xl premium-hover premium-3d premium-left">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="font-semibold text-white text-lg">Databases (MongoDB/SQL)</h4>
+                            <span class="text-highlight-text text-lg">75%</span>
+                        </div>
+                        <div class="w-full bg-gray-600 rounded-full h-3">
+                            <div class="bg-accent-color h-3 rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                    <!-- Skill Card 5 -->
+                    <div class="custom-card p-8 rounded-2xl premium-hover premium-3d premium-top">
+                        <div class="flex justify-between items-center mb-4">
+                            <h4 class="font-semibold text-white text-lg">Search Engine Optimization</h4>
+                            <span class="text-highlight-text text-lg">98%</span>
+                        </div>
+                        <div class="w-full bg-gray-600 rounded-full h-3">
+                            <div class="bg-accent-color h-3 rounded-full" style="width: 98%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Premium Divider -->
+        <div class="premium-divider"></div>
+
+        <!-- 5. Contact Section -->
+        <section id="contact" class="py-24">
+            <div class="text-center mb-20 premium-3d premium-top">
+                <h2 class="text-5xl font-bold text-white mb-4">Get In Touch</h2>
+                <p class="text-xl text-accent-color">Ready to collaborate on your next project?</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto custom-card p-10 md:p-16 rounded-3xl shadow-2xl premium-3d premium-behind premium-hover">
+                <form id="contact-form" class="space-y-8">
+                    <div>
+                        <label for="name" class="block text-lg font-medium text-gray-300 mb-2">Your Name</label>
+                        <input type="text" id="name" name="name" required
+                               class="w-full p-4 bg-primary-bg border border-gray-600 rounded-xl focus:border-accent-color focus:ring focus:ring-accent-color/50 transition duration-300 text-white text-lg">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-lg font-medium text-gray-300 mb-2">Your Email</label>
+                        <input type="email" id="email" name="email" required
+                               class="w-full p-4 bg-primary-bg border border-gray-600 rounded-xl focus:border-accent-color focus:ring focus:ring-accent-color/50 transition duration-300 text-white text-lg">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-lg font-medium text-gray-300 mb-2">Message</label>
+                        <textarea id="message" name="message" rows="6" required
+                                  class="w-full p-4 bg-primary-bg border border-gray-600 rounded-xl focus:border-accent-color focus:ring focus:ring-accent-color/50 transition duration-300 text-white text-lg"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-accent-color hover:bg-violet-700 text-white font-bold py-4 rounded-xl transition duration-300 transform hover:scale-[1.01] shadow-lg shadow-violet-800/50 premium-button text-lg">
+                        Send Message
+                    </button>
+                    <div id="form-message" class="mt-6 text-center hidden p-4 rounded-xl text-base"></div>
+                </form>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="mt-16 py-12 border-t border-secondary-bg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-400">
+            <p class="text-lg">&copy; <span id="currentYear"></span> Aanand Kolri. All rights reserved.</p>
+            <p class="text-base mt-3">Built with HTML, Tailwind CSS, and pure JavaScript.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript for interactivity -->
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        // Create premium background particles
+        function createParticles() {
+            const bg = document.getElementById('premiumBg');
+            const particleCount = 15;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('premium-particle');
+                
+                // Random size between 80px and 200px
+                const size = Math.random() * 120 + 80;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random animation delay and duration
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                particle.style.animationDuration = `${Math.random() * 10 + 10}s`;
+                
+                bg.appendChild(particle);
+            }
+        }
+
+        // Create particle trail for profile
+        function createProfileTrail() {
+            const profileContainer = document.getElementById('profile-container');
+            if (!profileContainer) return;
+            
+            const trailCount = 12;
+            const radius = 200; // Adjust based on profile size
+            
+            for (let i = 0; i < trailCount; i++) {
+                const trail = document.createElement('div');
+                trail.classList.add('profile-trail');
+                
+                // Calculate positions in a circle
+                const angle = (i / trailCount) * 2 * Math.PI;
+                const tx = Math.cos(angle) * radius;
+                const ty = Math.sin(angle) * radius;
+                
+                // Set CSS variables for animation
+                trail.style.setProperty('--tx', `${tx}px`);
+                trail.style.setProperty('--ty', `${ty}px`);
+                
+                // Position at center initially
+                trail.style.left = '50%';
+                trail.style.top = '50%';
+                trail.style.transform = 'translate(-50%, -50%)';
+                
+                // Animation
+                const duration = 3 + Math.random() * 2;
+                const delay = i * 0.15;
+                trail.style.animation = `trailFloat ${duration}s ease-in-out infinite`;
+                trail.style.animationDelay = `${delay}s`;
+                
+                // Size and color variation
+                const size = 15 + Math.random() * 25;
+                trail.style.width = `${size}px`;
+                trail.style.height = `${size}px`;
+                
+                // Color variation
+                const colors = ['#A855F7', '#C084FC', '#9333EA', '#D8B4FE'];
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                trail.style.background = `radial-gradient(circle, ${color} 0%, transparent 70%)`;
+                
+                // Add to profile container
+                profileContainer.appendChild(trail);
+            }
+        }
+
+        // Create sparkle dots
+        function createSparkleDots() {
+            const profileContainer = document.getElementById('profile-container');
+            if (!profileContainer) return;
+            
+            const sparkleCount = 8;
+            const radius = 180; // Inside the profile ring
+            
+            for (let i = 0; i < sparkleCount; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle-dot');
+                
+                // Calculate random position near the ring
+                const angle = Math.random() * 2 * Math.PI;
+                const distance = radius + (Math.random() * 40 - 20);
+                const sparkleX = Math.cos(angle) * distance;
+                const sparkleY = Math.sin(angle) * distance;
+                
+                // Set CSS variables for animation
+                sparkle.style.setProperty('--sparkle-x', `${sparkleX}px`);
+                sparkle.style.setProperty('--sparkle-y', `${sparkleY}px`);
+                
+                // Position at center initially
+                sparkle.style.left = '50%';
+                sparkle.style.top = '50%';
+                
+                // Animation
+                const duration = 2 + Math.random() * 3;
+                const delay = Math.random() * 2;
+                sparkle.style.animation = `sparkleFloat ${duration}s ease-in-out infinite`;
+                sparkle.style.animationDelay = `${delay}s`;
+                
+                // Random size
+                const size = 3 + Math.random() * 4;
+                sparkle.style.width = `${size}px`;
+                sparkle.style.height = `${size}px`;
+                
+                // Add glow effect
+                sparkle.style.boxShadow = `0 0 8px 2px rgba(255, 255, 255, 0.7)`;
+                
+                // Add to profile container
+                profileContainer.appendChild(sparkle);
+            }
+        }
+
+        // 1. Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobileMenuButton');
+        const closeMenuButton = document.getElementById('closeMenuButton');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.remove('-translate-x-full');
+        });
+
+        const closeMobileMenu = () => {
+            mobileMenu.classList.add('-translate-x-full');
+        };
+
+        closeMenuButton.addEventListener('click', closeMobileMenu);
+        
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', closeMobileMenu);
+        });
+
+        // 2. Portfolio Tab Switching Logic
+        const tabButtons = document.querySelectorAll('.portfolio-tab');
+        const tabContents = document.querySelectorAll('.portfolio-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                tabButtons.forEach(btn => btn.classList.remove('active-tab', 'bg-accent-color/70', 'text-white'));
+                
+                // Add active class to the clicked button
+                button.classList.add('active-tab', 'bg-accent-color/70', 'text-white');
+
+                // Hide all content
+                tabContents.forEach(content => content.classList.add('hidden'));
+
+                // Show the corresponding content
+                const targetId = button.getAttribute('data-tab') + '-content';
+                document.getElementById(targetId).classList.remove('hidden');
+            });
+
+            // Set initial active tab styling (for 'Projects' on load)
+            if (button.getAttribute('data-tab') === 'projects') {
+                button.classList.add('active-tab', 'bg-accent-color/70', 'text-white');
+            }
+        });
+
+        // 3. Footer Year Update
+        document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+        // 4. Contact Form Submission Handling (Simulated)
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Show loading state
+            const submitButton = this.querySelector('button[type="submit"]');
+            submitButton.textContent = 'Sending...';
+            submitButton.disabled = true;
+
+            // Simulate API call delay
+            setTimeout(() => {
+                // Reset button
+                submitButton.textContent = 'Send Message';
+                submitButton.disabled = false;
+                
+                // Display success message
+                formMessage.textContent = 'Thank you! Your message has been sent successfully.';
+                formMessage.className = 'mt-4 text-center p-3 rounded-lg text-sm bg-green-900/50 text-green-300';
+                formMessage.classList.remove('hidden');
+
+                // Clear the form
+                contactForm.reset();
+                
+                // Hide message after 5 seconds
+                setTimeout(() => {
+                    formMessage.classList.add('hidden');
+                }, 5000);
+
+            }, 2000); // 2 seconds delay
+        });
+
+        // 5. Scroll Indicator and Navigation Highlight
+        const navLinks = document.querySelectorAll('.nav-link');
+        const sections = document.querySelectorAll('section');
+        const premiumScrollProgress = document.getElementById('premiumScrollProgress');
+
+        const updateScrollIndicator = () => {
+            const scrollPercent = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
+            premiumScrollProgress.style.width = scrollPercent + '%';
+        };
+
+        const updateNavHighlight = () => {
+            let current = '';
+
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                // Use a larger offset for better usability, e.g., 100px
+                if (window.scrollY >= sectionTop - 150) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active-link');
+                if (link.href.includes(current)) {
+                    link.classList.add('active-link');
+                }
+            });
+        };
+
+        // 6. PREMIUM 3D Scroll Animation Logic
+        const premium3DElements = document.querySelectorAll('.premium-3d');
+        
+        const checkScroll = () => {
+            const triggerBottom = window.innerHeight * 0.85;
+            
+            premium3DElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                
+                if (elementTop < triggerBottom) {
+                    element.classList.add('active');
+                } else {
+                    element.classList.remove('active');
+                }
+            });
+        };
+
+        // 7. Enhanced scroll event listener
+        window.addEventListener('scroll', () => {
+            updateScrollIndicator();
+            updateNavHighlight();
+            checkScroll();
+        });
+
+        // Run on load to set initial state
+        window.addEventListener('load', () => {
+            createParticles();
+            createProfileTrail();
+            createSparkleDots();
+            updateScrollIndicator();
+            updateNavHighlight();
+            checkScroll();
+            // Ensure first nav item is highlighted if at the very top
+            if (window.scrollY === 0) {
+                document.querySelector('.nav-link[href="#home"]').classList.add('active-link');
+            }
+        });
+
+    </script>
+</body>
+</html>
